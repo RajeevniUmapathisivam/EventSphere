@@ -13,9 +13,9 @@ The app creates its local database and demo accounts on first launch. A database
 
 | Role | Demo name | Email | Local demo password |
 | --- | --- | --- | --- |
-| Admin | Arul Selvan | admin@example.com | `DemoAdmin123!` |
-| Staff | Meena Tharmalingam | staff@example.com | `DemoStaff123!` |
-| Attendee | Kavitha Sivarajah | attendee@example.com | `DemoAttendee123!` |
+| Admin | Arul Selvan | admin@example.com | `SphereAdmin@2026` |
+| Staff | Meena Tharmalingam | staff@example.com | `SphereStaff@2026` |
+| Attendee | Kavitha Sivarajah | attendee@example.com | `SphereGuest@2026` |
 
 ### Manual setup and tests
 
