@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendee dashboard | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell">
+  <h1>My bookings and tickets</h1>
+  <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+  <section>
+    <h2>QR tickets</h2>
+    <div id="tickets" class="cards"></div>
+  </section>
+  <section>
+    <h2>Booking history</h2>
+    <p class="helper">Refunds are 100% at least 24 hours before the event and 50% after that until it starts. Cancelled events receive a full refund on active bookings.</p>
+    <div id="bookings" class="cards"></div>
+  </section>
+  <section>
+    <h2>Waitlist</h2>
+    <div id="waitlist" class="cards" aria-live="polite"></div>
+  </section>
+  <section>
+    <h2>Private venue hire</h2>
+    <form id="hire-form" class="panel">
+      <div class="fields">
+        <label>Venue <select name="venue_id" required></select></label>
+        <label>Start time <input name="requested_date" type="datetime-local" required></label>
+        <label>Duration (whole hours) <input name="duration_hours" type="number" min="1" max="24" value="1" required></label>
+        <label>Guest count <input name="expected_attendees" type="number" min="1" max="100000" required></label>
+      </div>
+      <label>Purpose <textarea name="purpose" required maxlength="3000"></textarea></label>
+      <button id="hire-submit">Request venue hire</button>
+      <p id="hire-response" role="status" aria-live="polite" hidden></p>
+      <div id="alternatives" class="cards"></div>
+    </form>
+    <div id="hires" class="cards"></div>
+  </section>
+  <section>
+    <h2>Notifications</h2>
+    <div id="notifications" class="d-grid gap-3"></div>
+  </section>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/waitlist.js" defer></script>
+<script src="/js/attendee.js" defer></script>
+</body>
+</html>

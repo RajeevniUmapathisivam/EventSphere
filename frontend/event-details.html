@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event details | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell">
+  <a class="back-link" href="/">All events</a>
+  <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+  <div class="panel event-heading-panel">
+    <p id="event-category" class="pill" hidden></p>
+    <h1 id="title">Event details</h1>
+    <div id="summary" class="event-summary"></div>
+  </div>
+  <section>
+    <h2>Ticket categories</h2>
+    <div id="categories" class="cards"></div>
+  </section>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/waitlist.js" defer></script>
+<script src="/js/event-details.js" defer></script>
+</body>
+</html>

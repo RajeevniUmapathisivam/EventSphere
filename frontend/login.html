@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell">
+  <h1>Sign in</h1>
+  <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+  <form id="auth-form" data-action="login" class="panel narrow">
+    <label>Email <input name="email" type="email" required autocomplete="username" maxlength="150"></label>
+    <label>Password <input name="password" type="password" required autocomplete="current-password" maxlength="128"></label>
+    <button type="submit">Sign in</button>
+    <a href="/register.html">Create an attendee account</a>
+  </form>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/auth.js" defer></script>
+</body>
+</html>

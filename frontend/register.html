@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell">
+  <h1>Register as an attendee</h1>
+  <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+  <form id="auth-form" data-action="register" class="panel narrow">
+    <label>Full name <input name="full_name" required autocomplete="name" maxlength="100"></label>
+    <label>Email <input name="email" type="email" required autocomplete="username" maxlength="150"></label>
+    <label>Password (at least 8 characters) <input name="password" type="password" minlength="8" maxlength="128" required autocomplete="new-password"></label>
+    <button type="submit">Register</button>
+    <a href="/login.html">Sign in to an existing account</a>
+  </form>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/auth.js" defer></script>
+</body>
+</html>

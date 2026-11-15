@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin dashboard | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell admin-main">
+  <h1>Admin dashboard</h1>
+  <nav class="section-nav" aria-label="Dashboard sections">
+    <a href="#overview">Overview</a>
+    <a href="#venue-management">Venues</a>
+    <a href="#event-management">Create event</a>
+    <a href="#hire-review">Hire requests</a>
+    <a href="#agent-messages">Agent messages</a>
+  </nav>
+  <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+  <section id="overview">
+    <h2>Event overview</h2>
+    <div id="admin-events" class="cards"></div>
+  </section>
+  <section id="venue-management">
+    <h2>Venues</h2>
+    <form id="venue-form" class="panel">
+      <input name="venue_id" type="hidden">
+      <div class="fields">
+        <label>Name <input name="name" required maxlength="150"></label>
+        <label>Location <input name="location" required maxlength="255"></label>
+        <label>Capacity <input name="capacity" required type="number" min="1" max="100000"></label>
+        <label>Hourly hire rate (LKR) <input name="hourly_rate" required type="number" min="0" step="0.01"></label>
+        <label>Image URL <input name="image_url" type="url" placeholder="https://"></label>
+        <label class="check"><input name="open_for_hire" type="checkbox" checked> Open for private hire</label>
+      </div>
+      <label>Description <textarea name="description" required maxlength="3000"></textarea></label>
+      <div class="actions"><button id="venue-submit" type="submit">Create venue</button><button id="venue-reset" type="button" class="secondary" hidden>Cancel edit</button></div>
+    </form>
+    <div id="venues" class="cards"></div>
+  </section>
+  <section id="event-management">
+    <h2>Create event</h2>
+    <form id="event-form" class="panel">
+      <div class="fields">
+        <label>Title <input name="title" required maxlength="150"></label>
+        <label>Category <input name="category" required maxlength="100" placeholder="Workshop, concert, seminar"></label>
+        <label>Venue <select name="venue_id" required></select></label>
+        <label>Status <select name="status"><option value="draft">Draft</option><option value="published">Published</option></select></label>
+        <label>Starts <input name="start_time" required type="datetime-local"></label>
+        <label>Ends <input name="end_time" required type="datetime-local"></label>
+      </div>
+      <label>Description <textarea name="description" required maxlength="3000"></textarea></label>
+      <fieldset>
+        <legend>Ticket categories</legend>
+        <div id="ticket-types"></div>
+        <button id="add-category" class="secondary" type="button">Add ticket category</button>
+      </fieldset>
+      <button id="event-submit" type="submit">Save event</button>
+    </form>
+  </section>
+  <section id="hire-review">
+    <h2>Private hire review</h2>
+    <div id="hires" class="cards"></div>
+  </section>
+  <section id="agent-messages">
+    <h2>Agent message log</h2>
+    <form id="log-form" class="filters d-flex flex-wrap gap-3">
+      <label>Conversation ID <input name="conversation_id" type="search"></label>
+      <button class="secondary">Load messages</button>
+    </form>
+    <div id="messages" class="d-grid gap-3"></div>
+    <button id="older-messages" type="button" class="secondary" hidden>Load older messages</button>
+  </section>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/organiser.js" defer></script>
+</body>
+</html>

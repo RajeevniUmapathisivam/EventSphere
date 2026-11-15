@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gate check-in | EventSphere</title>
+  <link rel="stylesheet" href="/css/vendor/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="shell" aria-label="Main navigation">
+  <a class="brand" href="/">EventSphere</a>
+  <div id="account-nav"></div>
+</nav></header>
+<main class="shell">
+  <h1>Gate check-in</h1>
+  <div id="message" class="notice checkin-result narrow" role="status" aria-live="polite" hidden></div>
+  <form id="checkin-form" class="panel narrow scanner">
+    <label>Event <select name="event_id" required></select></label>
+    <video id="camera" playsinline muted hidden></video>
+    <div class="actions">
+      <button type="button" id="start-camera" class="secondary">Start camera</button>
+      <button type="button" id="stop-camera" class="secondary" hidden>Stop camera</button>
+    </div>
+    <label class="manual">Manual ticket code <input name="qr_code" required maxlength="255" autocomplete="off" spellcheck="false"></label>
+    <button id="checkin-submit" type="submit">Check in</button>
+  </form>
+</main>
+<script src="/js/workspace.js" defer></script>
+<script src="/js/vendor/jsQR.js" defer></script>
+<script src="/js/staff.js" defer></script>
+</body>
+</html>
