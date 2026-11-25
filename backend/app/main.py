@@ -7,14 +7,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from sqlalchemy import select, delete
+from sqlalchemy import delete, select
 
 from app.agents import sweep_waitlist
 from app.core.config import DEMO_DATA_ENABLED, DEMO_ENABLED, PRODUCTION, ROOT, SWEEP_SECONDS
-from app.core.security import hash_password, signed_in_user
+from app.core.security import hash_password, signed_in_user, verify_password
 from app.database.connection import Base, SessionLocal, decision_transaction, engine
 from app.demo_data import seed_demo_data
-from app.models.models import DecisionLock, User, LoginSession
+from app.models.models import DecisionLock, LoginSession, User
 from app.routes import auth_routes, booking_routes, event_routes, ticket_routes, venue_routes
 
 logger = logging.getLogger(__name__)
@@ -43,18 +43,16 @@ def initialize():
             if existing is None:
                 existing = User(full_name=name, email=email, password_hash=hash_password(password), role=role)
                 db.add(existing)
-                
             elif existing.role != role:
-    raise RuntimeError(f"The demo email {email} belongs to a different role.")
-
-elif role == "admin" and os.getenv("RESET_DEMO_ADMIN_PASSWORD") == "1":
-    existing.password_hash = hash_password(password)
-    db.execute(delete(LoginSession).where(
-        LoginSession.user_id == existing.id
-    ))
-
-accounts[role] = existing
-            
+                raise RuntimeError(f"The demo email {email} belongs to a different role.")
+            elif (
+                role == "admin"
+                and os.getenv("RESET_DEMO_ADMIN_PASSWORD") == "1"
+                and not verify_password(password, existing.password_hash)
+            ):
+                existing.password_hash = hash_password(password)
+                db.execute(delete(LoginSession).where(LoginSession.user_id == existing.id))
+            accounts[role] = existing
         if DEMO_DATA_ENABLED:
             db.flush()
             seed_demo_data(db, accounts["admin"].id, accounts["attendee"].id)
